@@ -1,0 +1,12 @@
+.cards{
+    width: 50%;
+    margin: 0 auto;
+    position: relative;
+    overflow-x: scroll;
+    height: 350px;
+}
+
+.interno{
+    display: flex;
+    position: absolute;
+}

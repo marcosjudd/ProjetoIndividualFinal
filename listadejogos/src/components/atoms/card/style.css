@@ -1,0 +1,20 @@
+.card{
+    width: 200px;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 8px;
+    text-align: center;
+    background-color: white;
+    margin-right: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.delete{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: space-between;
+    color: red;
+}
