@@ -1,9 +1,9 @@
 import { Sequelize } from "sequelize";
 import db from '../db.js'
 import userModel from "./userModel.js";
-import filmeModel from "./filmeModel.js";
+import jogoModel from "./jogoModel.js";
 
-const FilmeVisto = db.define("filmevisto", {
+const jogoVisto = db.define("jogovisto", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -18,18 +18,18 @@ const FilmeVisto = db.define("filmevisto", {
       key: 'id',
     }
   },
-  filme_id: {
+  jogo_id: {
     type: Sequelize.INTEGER,
     allowNull: false,
     references: {
-      model: filmeModel,
+      model: jogoModel,
       key: 'id',
     }
   }
 }, {
   freezeTableName: true,
-  tableName: 'filmeVisto',
+  tableName: 'jogoVisto',
   timestamps: false
 });
 
-export default FilmeVisto;
+export default jogoVisto;

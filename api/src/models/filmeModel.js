@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 import db from '../db.js';
 
-const Filme = db.define('filme', {
+const jogo = db.define('jogo', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -44,8 +44,8 @@ const Filme = db.define('filme', {
   },
 }, {
   freezeTableName: true,
-  tableName: 'filme',
+  tableName: 'jogo',
   timestamps: false,
 });
 
-export default Filme;
+export default jogo;

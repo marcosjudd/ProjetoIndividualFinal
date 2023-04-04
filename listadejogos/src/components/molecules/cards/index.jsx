@@ -4,8 +4,8 @@ import axios from 'axios'
 import "./style.css"
 
 function Cards(){
-    const [filme, setFilme] = useState();
-    const [filme2, setFilme2] = useState(
+    const [jogo, setjogo] = useState();
+    const [jogo2, setjogo2] = useState(
         
     );
     const [dados, setdados] = useState(
@@ -17,28 +17,28 @@ function Cards(){
         }
     );
 
-    console.log(filme2)
+    console.log(jogo2)
 
     useEffect(() => {
         axios
-        .get('http://localhost:3000/filme')
+        .get('http://localhost:3000/jogo')
         .then((resposta) => {
-            setFilme(resposta.data)
+            setjogo(resposta.data)
         })
         .catch((erro) => console.log(erro));
     })
 
     useEffect(() => {
         axios
-        .get(`http://localhost:3000/filme/${dados.id}`)
+        .get(`http://localhost:3000/jogo/${dados.id}`)
         .then((resposta) => {
-            setFilme2(resposta.data)
+            setjogo2(resposta.data)
         })
         .catch((erro) => console.log(erro));
     })
 
     const deleteCard = (id, e) =>{
-        axios.delete(`http://localhost:3000/filme/${id}`)
+        axios.delete(`http://localhost:3000/jogo/${id}`)
         .then(res => console.log('Postado', res)).catch(err => console.log(err))
     }
 
@@ -52,7 +52,7 @@ function Cards(){
         <>
             <div className="cards">
                 <div className="interno">
-                    {filme?.map((e) => {
+                    {jogo?.map((e) => {
                         return(
                             <Card titulo={e.nome} texto={e.sinopse} cartaz={e.cartaz} onclickCard={() => setdados({id: e.id, nome: e.nome, sinopse: e.sinopse, cartaz: e.cartaz})} onclick={() => deleteCard(e.id)}/>
                         )
@@ -61,14 +61,14 @@ function Cards(){
             </div>
 
             <div className="botoes">
-                <h2>Insira um novo Filme</h2>
+                <h2>Insira um novo jogo</h2>
             </div>
 
             <form action=""  onSubmit={(e) => {
                 e.preventDefault();
                 alert('Dados enviados com sucesso!')
                 axios
-                .put(`http://localhost:3000/filme/${dados.id}`, {
+                .put(`http://localhost:3000/jogo/${dados.id}`, {
                     nome: dados.nome,
                     sinopse: dados.sinopse,
                     cartaz: dados.cartaz
@@ -82,7 +82,7 @@ function Cards(){
                 }
 
             }>
-                <h2>{`Alterar filme ${dados.nome}`}</h2>
+                <h2>{`Alterar jogo ${dados.nome}`}</h2>
                 <input type="text" name="nome" placeholder="nome" onChange={handleChange} value={dados.nome}/>
                 <input type="text" name="sinopse" placeholder="sinopse" onChange={handleChange} value={dados.sinopse}/>
                 <input type="text" name="cartaz" placeholder="cartaz" onChange={handleChange} value={dados.cartaz}/>

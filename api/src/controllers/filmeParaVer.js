@@ -1,32 +1,32 @@
-import FilmeParaVerRepository from "../models/filmeParaVerModel.js";
+import jogoParaVerRepository from "../models/jogoParaVerModel.js";
 
 function findAll(req, res) {
-  FilmeParaVerRepository.findAll().then((result) => res.json(result));
+  jogoParaVerRepository.findAll().then((result) => res.json(result));
 }
 
-function findFilmeParaVer(req, res) {
-  FilmeParaVerRepository.findByPk(req.params.id).then((result) => res.json(result));
+function findjogoParaVer(req, res) {
+  jogoParaVerRepository.findByPk(req.params.id).then((result) => res.json(result));
 }
 
-async function addFilmeParaVer(req, res) {
+async function addjogoParaVer(req, res) {
   try{
-    const filmeParaVer = await FilmeParaVerRepository.create({
+    const jogoParaVer = await jogoParaVerRepository.create({
       user_id: req.body.user_id,
-      filme_id: req.body.filme_id
+      jogo_id: req.body.jogo_id
     })
 
-    res.json(filmeParaVer);
+    res.json(jogoParaVer);
   } catch(error){
     res.status(400).json({ message: error.message });
   }
 }
 
-async function updateFilmeParaVer(req, res) {
+async function updatejogoParaVer(req, res) {
   try{
-    await FilmeParaVerRepository.update(
+    await jogoParaVerRepository.update(
       {
         user_id: req.body.user_id,
-        filme_id: req.body.filme_id
+        jogo_id: req.body.jogo_id
       },
       {
         where: {
@@ -35,8 +35,8 @@ async function updateFilmeParaVer(req, res) {
       }
     );
 
-    const filmeParaVerAtualizado = await FilmeParaVerRepository.findByPk(req.params.id);
-    res.json(filmeParaVerAtualizado);
+    const jogoParaVerAtualizado = await jogoParaVerRepository.findByPk(req.params.id);
+    res.json(jogoParaVerAtualizado);
   } catch(error){
     console.error(error);
     res.status(500).send('Erro ao atualizar a organização');
@@ -46,14 +46,14 @@ async function updateFilmeParaVer(req, res) {
   
 }
 
-async function deleteFilmeParaVer(req, res) {
-  await FilmeParaVerRepository.destroy({
+async function deletejogoParaVer(req, res) {
+  await jogoParaVerRepository.destroy({
     where: {
       id: req.params.id,
     },
   });
 
-  FilmeParaVerRepository.findAll().then((result) => res.json(result));
+  jogoParaVerRepository.findAll().then((result) => res.json(result));
 }
 
-export default { findAll, addFilmeParaVer, findFilmeParaVer, updateFilmeParaVer, deleteFilmeParaVer };
+export default { findAll, addjogoParaVer, findjogoParaVer, updatejogoParaVer, deletejogoParaVer };

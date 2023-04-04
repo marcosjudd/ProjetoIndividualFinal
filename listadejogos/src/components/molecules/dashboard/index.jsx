@@ -22,14 +22,14 @@ function Dashboard(){
     return(
         <>  
             <div className="botoes">
-                <h2>Insira um novo Filme</h2>
+                <h2>Insira um novo jogo</h2>
             </div>
 
             <form action="" className="post" onSubmit={(e) => {
                 e.preventDefault();
                 alert('Dados enviados com sucesso!')
                 axios
-                .post('http://localhost:3000/filme', {
+                .post('http://localhost:3000/jogo', {
                     nome: dados.nome,
                     sinopse: dados.sinopse,
                     cartaz: dados.cartaz

@@ -1,30 +1,30 @@
-import FilmeRepository from "../models/filmeModel.js";
+import jogoRepository from "../models/jogoModel.js";
 
 function findAll(req, res) {
-  FilmeRepository.findAll().then((result) => res.json(result));
+  jogoRepository.findAll().then((result) => res.json(result));
 }
 
-function findFilme(req, res) {
-  FilmeRepository.findByPk(req.params.id).then((result) => res.json(result));
+function findjogo(req, res) {
+  jogoRepository.findByPk(req.params.id).then((result) => res.json(result));
 }
 
-async function addFilme(req, res) {
+async function addjogo(req, res) {
   try{
-    const filme = await FilmeRepository.create({
+    const jogo = await jogoRepository.create({
       nome: req.body.nome,
       sinopse: req.body.sinopse,
       cartaz: req.body.cartaz
     })
 
-    res.json(filme);
+    res.json(jogo);
   } catch(error){
     res.status(400).json({ message: error.message });
   }
 }
 
-async function updateFilme(req, res) {
+async function updatejogo(req, res) {
   try{
-    await FilmeRepository.update(
+    await jogoRepository.update(
       {
         nome: req.body.nome,
         sinopse: req.body.sinopse,
@@ -37,8 +37,8 @@ async function updateFilme(req, res) {
       }
     );
 
-    const filmeAtualizado = await FilmeRepository.findByPk(req.params.id);
-    res.json(filmeAtualizado);
+    const jogoAtualizado = await jogoRepository.findByPk(req.params.id);
+    res.json(jogoAtualizado);
   } catch(error){
     console.error(error);
     res.status(500).send('Erro ao atualizar a organização');
@@ -48,14 +48,14 @@ async function updateFilme(req, res) {
   
 }
 
-async function deleteFilme(req, res) {
-  await FilmeRepository.destroy({
+async function deletejogo(req, res) {
+  await jogoRepository.destroy({
     where: {
       id: req.params.id,
     },
   });
 
-  FilmeRepository.findAll().then((result) => res.json(result));
+  jogoRepository.findAll().then((result) => res.json(result));
 }
 
-export default { findAll, addFilme, findFilme, updateFilme, deleteFilme };
+export default { findAll, addjogo, findjogo, updatejogo, deletejogo };
